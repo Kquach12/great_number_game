@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="static\style.css">
+</head>
+<body>
+    <div id="container">
+        <h2>{{session['number']}}</h2>
+        <h1>Welcome to the Great Number Game!!!</h1>
+        <h2>I am thinking of a number between 1 and 100</h2>
+        <div class="guess">
+            <h3>Take a guess</h3>
+            <form action="/check" method="POST">
+                <input type="text" name="guess_value">
+                <input type="submit" value="Guess">
+            </form>
+            <h3>Attempts: {{session['attempts']}}</h3>
+        </div>
+        {% if 'guess_value' in session %}
+            {% if session['guess_value'] == session['number'] %}
+                <div class="result_right">
+                    <h2>You are right! {{session['number']}} was the number</h2>
+                    <form action="/reset" method="GET">
+                        <button>Reset</button>
+                    </form>
+                    <h3>Join the leaderboard</h3>
+                    <form action="/joinleaderboard" method="POST">
+                        <input type="text" name="name">
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            {% else %}
+                {% if session['attempts'] >= 5 %}
+                    <div class="result_wrong">
+                        <h2>You Lose :(</h2>
+                        <form action="/reset" method="GET">
+                            <button>Retry</button>
+                        </form>                
+                    </div>
+                {% elif session['guess_value'] > session['number'] %}
+                    <div class="result_wrong"><h2>Too High!</h2></div>
+                {% else %}
+                <div class="result_wrong"><h2>Too Low!</h2></div>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+
+    </div>
+</body>
+</html>

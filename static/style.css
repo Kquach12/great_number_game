@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#container{
+    width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+h2{
+    margin: 20px;
+}
+
+.guess{
+    height: 120px;
+    width: 200px;
+    margin-top: 10px;
+    border: 1px solid blue;
+    background-color: cornsilk;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.result_wrong, .result_right{
+    width: 500px;
+    background-color: crimson;
+    height: 100px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.result_right{
+    background-color: green;height: fit-content;
+}
